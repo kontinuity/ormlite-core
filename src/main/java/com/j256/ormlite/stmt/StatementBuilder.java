@@ -74,7 +74,7 @@ public abstract class StatementBuilder<T, ID> {
 		String statement = buildStatementString(argList);
 		ArgumentHolder[] selectArgs = argList.toArray(new ArgumentHolder[argList.size()]);
 		FieldType[] resultFieldTypes = getResultFieldTypes();
-		FieldType[] argFieldTypes = new FieldType[argList.size()];;
+		FieldType[] argFieldTypes = new FieldType[argList.size()];
 		for (int selectC = 0; selectC < selectArgs.length; selectC++) {
 			argFieldTypes[selectC] = selectArgs[selectC].getFieldType();
 		}

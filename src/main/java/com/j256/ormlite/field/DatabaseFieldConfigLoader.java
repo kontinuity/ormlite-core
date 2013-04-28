@@ -103,6 +103,8 @@ public class DatabaseFieldConfigLoader {
 	private static final String FIELD_NAME_VERSION = "version";
 	private static final String FIELD_NAME_FOREIGN_COLUMN_NAME = "foreignColumnName";
 	private static final String FIELD_NAME_READ_ONLY = "readOnly";
+    private static final String FIELD_NAME_CONTAINER_CLASS = "containerClass";
+    private static final String FIELD_NAME_ITEM_CLASS = "itemClass";
 
 	private static final String FIELD_NAME_FOREIGN_COLLECTION = "foreignCollection";
 	private static final String FIELD_NAME_FOREIGN_COLLECTION_EAGER = "foreignCollectionEager";
@@ -393,7 +395,23 @@ public class DatabaseFieldConfigLoader {
 			config.setForeignColumnName(value);
 		} else if (field.equals(FIELD_NAME_READ_ONLY)) {
 			config.setReadOnly(Boolean.parseBoolean(value));
-		}
+		} else if (field.equals(FIELD_NAME_CONTAINER_CLASS)) {
+            try {
+                @SuppressWarnings("unchecked")
+                Class<?> clazz = (Class<?>) Class.forName(value);
+                config.setContainerClass(clazz);
+            } catch (ClassNotFoundException e) {
+                throw new IllegalArgumentException("Could not find containerClass: " + value);
+            }
+		} else if (field.equals(FIELD_NAME_ITEM_CLASS)) {
+            try {
+                @SuppressWarnings("unchecked")
+                Class<?> clazz = (Class<?>) Class.forName(value);
+                config.setItemClass(clazz);
+            } catch (ClassNotFoundException e) {
+                throw new IllegalArgumentException("Could not find itemClass: " + value);
+            }
+        }
 		/**
 		 * foreign collection field information
 		 */

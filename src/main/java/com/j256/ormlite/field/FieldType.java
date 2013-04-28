@@ -449,6 +449,10 @@ public class FieldType {
 		return dataTypeConfigObj;
 	}
 
+    public DatabaseFieldConfig getFieldConfig() {
+        return fieldConfig;
+    }
+
 	public SqlType getSqlType() {
 		return fieldConverter.getSqlType();
 	}
@@ -822,6 +826,9 @@ public class FieldType {
 			dbColumnPos = results.findColumn(columnName);
 			columnPositions.put(columnName, dbColumnPos);
 		}
+
+        System.out.println(fieldConfig.getContainerClass() + " | " + fieldConfig.getItemClass() + " | " + fieldConfig.getFieldName());
+
 		@SuppressWarnings("unchecked")
 		T converted = (T) fieldConverter.resultToJava(this, results, dbColumnPos);
 		if (fieldConfig.isForeign()) {

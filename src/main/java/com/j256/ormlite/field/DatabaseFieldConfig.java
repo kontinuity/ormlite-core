@@ -63,8 +63,10 @@ public class DatabaseFieldConfig {
 	private String foreignCollectionOrderColumnName;
 	private boolean foreignCollectionOrderAscending = DEFAULT_FOREIGN_COLLECTION_ORDER_ASCENDING;
 	private String foreignCollectionForeignFieldName;
+    private Class<?> containerClass;
+    private Class<?> itemClass;
 
-	public DatabaseFieldConfig() {
+    public DatabaseFieldConfig() {
 		// for spring
 	}
 
@@ -501,6 +503,22 @@ public class DatabaseFieldConfig {
 		this.readOnly = readOnly;
 	}
 
+    public Class<?> getContainerClass() {
+        return containerClass;
+    }
+
+    public void setContainerClass(Class<?> containerClass) {
+        this.containerClass = containerClass;
+    }
+
+    public Class<?> getItemClass() {
+        return itemClass;
+    }
+
+    public void setItemClass(Class<?> itemClass) {
+        this.itemClass = itemClass;
+    }
+
 	/**
 	 * Create and return a config converted from a {@link Field} that may have one of the following annotations:
 	 * {@link DatabaseField}, {@link ForeignCollectionField}, or javax.persistence...
@@ -630,6 +648,8 @@ public class DatabaseFieldConfig {
 		config.version = databaseField.version();
 		config.foreignColumnName = valueIfNotBlank(databaseField.foreignColumnName());
 		config.readOnly = databaseField.readOnly();
+        config.containerClass = databaseField.containerClass();
+        config.itemClass = databaseField.itemClass();
 
 		return config;
 	}

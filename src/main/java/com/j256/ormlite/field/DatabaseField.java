@@ -5,6 +5,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.util.Collection;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.db.DatabaseType;
@@ -321,4 +322,8 @@ public @interface DatabaseField {
 	 * NOTE to developers: if you add fields here you have to add them to the DatabaseFieldConfig,
 	 * DatabaseFieldConfigLoader, DatabaseFieldConfigLoaderTest, and DatabaseTableConfigUtil.
 	 */
+
+    Class<?> containerClass() default Void.class;
+
+    Class<?> itemClass() default Void.class;
 }
