@@ -73,7 +73,7 @@
 		</profile>
 	</profiles>
 	<build>
-		<finalName>ormlite-core</finalName>
+		<finalName>ormlite-core-awsmc-${version}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -190,7 +190,7 @@
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>
-						<phase>${gpgPhase}</phase>
+						<phase>none</phase>
 						<goals>
 							<goal>sign</goal>
 						</goals>
@@ -211,8 +211,8 @@
 				<version>1.5.0</version>
 				<executions>
 					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
+						<id>compile</id>
+						<phase>compile</phase>
 						<goals>
 							<goal>replace</goal>
 						</goals>
